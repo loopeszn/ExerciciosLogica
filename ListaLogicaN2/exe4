@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+int main() {
+	int a, b, c;
+	
+	printf("Digite dois Valores A e B\n");
+	
+	printf("Insira um Valor para A:\n");
+	scanf("%d", &a);
+	printf("Insira um Valor para B:\n");
+	scanf("%d", &b);
+	
+	if (a == b) {
+		c = a + b;
+		printf("valores iguais Somados = %d\n", c);
+	} else {
+		c = a * b;
+		printf("Valores diferentes Multiplados = %d\n", c);
+	}
+
+    return 0;
+}
