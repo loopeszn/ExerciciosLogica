@@ -1,0 +1,19 @@
+#include <stdio.h>
+
+int main() {
+	int numero, c;
+	
+	printf("Digite um Numero:\n");
+	scanf("%d", &numero);	
+	
+	if(numero > 0){
+		c = numero *2;
+		printf("Numero Positivo, o Dobro dele e: %d", c);
+		
+	} if (numero < 0){
+		c = numero *3;
+		printf("Numero Negativo, o Triplo dele e: %d", c);
+		
+	}
+    return 0;
+}
