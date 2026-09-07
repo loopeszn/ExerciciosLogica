@@ -1,0 +1,32 @@
+#include <stdio.h>
+
+int main(){
+	int a, b, c, soma;
+	
+	printf("Digite 3 Valores Inteiro\n");
+	printf("Digite um Valor para A: \n");
+	scanf("%d", &a);
+	
+	printf("Digite um Valor para B: \n");
+	scanf("%d", &b);
+	
+	printf("Digite um Valor para C: \n");
+	scanf("%d", &c);
+	
+	soma = a + b;
+	
+	if(soma > c){
+		printf("A Soma de A+B e Maior que C (%d): \n", c);
+		printf("%d\n", soma);
+		
+	} else if (soma == c){
+		printf("A Soma e Igual a C (%d): \n", c);
+		printf("%d\n", soma);
+		
+	} else{
+		printf("A Soma de A+B e Menor que C (%d): \n", c);
+		printf("%d\n", soma);
+	}
+	
+	return 0;	
+}
