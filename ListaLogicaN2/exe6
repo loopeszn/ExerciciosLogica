@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(){
+	int nomeLimpo;
+  int rendaEstavel;
+	
+	printf("Digite 1 para (SIM) e 0 para (NÃO):\n");
+	
+	printf("O Senhor tem o nome limpo?\n");
+  scanf("%d", &nomeLimpo);
+	
+	printf("O Senhor comprova se tem renda estável?\n");
+  scanf("%d", &rendaEstavel);
+	
+	system("cls");
+	
+	printf("-----RESPOSTA PARA O EMPRESTIMO-----\n");
+	if (nomeLimpo && rendaEstavel){
+		printf("Parabéns! O Emprestimo foi APROVADO!!!\n");
+	}else {
+	  printf("Desculpe, o Emprestimo foi REPROVADO!!!\n");
+    printf("Motivo: O cliente nao atende a todos os criterios solicitados.\n");
+	}
+	
+  return 0;
+}
