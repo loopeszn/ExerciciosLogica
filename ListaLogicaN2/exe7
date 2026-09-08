@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main(){
+	int numero, resultado;
+	
+	printf("Insira um Valor:");
+	scanf("%d", &numero);
+	
+	if (numero % 2 == 0) {
+	printf("Foram Somados 5 ao Numero PAR digitado:\n");
+  resultado = numero + 5;
+  } else {
+  printf("Foram Somados 8 ao Numero IMPAR digitado:\n");
+  resultado = numero + 8;
+  }
+	
+	printf("Resultado adquirido = %d", resultado);
+  
+	return 0;
+}
