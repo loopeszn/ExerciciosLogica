@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+int main(){
+	int a, b, c;
+	
+	printf("Isira 3 valores distintos para serem incluidos em uma Sequencia:\n");
+	scanf("%d", &a);
+	
+	printf("Isira o proximo valor da Sequencia:\n");
+	scanf("%d", &b);
+	
+	printf("Isira o ultimo valor para construção da Sequencia:\n");
+	scanf("%d", &c);
+	
+	printf("A SEQUENCIA SEGUINTE E:\n");
+	
+	if(a > b && a > c){
+		printf("%d", a);
+		if(b > c){
+			printf("%d", b);
+			printf("%d", c);
+		}else {
+			printf("%d", c);
+			printf("%d", b);
+		}
+	}
+	else if (b > a && b > c){
+		printf("%d", b);
+		if (a > c){
+			printf("%d", a);
+			printf("%d", c);
+		} else {
+			printf("%d", c);
+			printf("%d", a);
+		}
+	} 
+	else{
+		printf("%d", c);
+		if (a > b){
+			printf("%d", a);
+			printf("%d", b);
+		} else{
+			printf("%d", b);
+			printf("%d", a);
+		}
+	}
+	
+	return 0;
+}
