@@ -118,7 +118,7 @@ int main() {
                     if (codigo[i] == codigoBusca) {	//Quando ele acha o codigo do livro, ele solicita o novo valor que sera inserido
 													//Um 1 memoria vetorial so pode te 1 valor(quando acontece a substituicao o vetor naturalmente apaga oque existe e altera para o novo)
                         printf("Novo titulo: ");
-                        scanf("%s", titulo[i]);		//Lê o valor a ser alterado e armazena no [i] em questao
+                        scanf("%s", titulo[i]);		//LÃª o valor a ser alterado e armazena no [i] em questao
 													//por isso o i dever o mesmo para codigo[i] = titulo[i] = autor[i] = ano[i]
                         printf("Novo autor: ");
                         scanf("%s", autor[i]);
@@ -167,18 +167,18 @@ int main() {
                     while (titulo[i + 1][j] != '\0') {	 // '/0' => para a leitura dos caracteres quando indentifica um caracter nulo(espaco ou enter)
                         titulo[i][j] = titulo[i + 1][j]; //transferencia de titulo[1] para titulo[0]
                         j++; 	//garante q ele leia caracter por caracter sem parar
-                    }			//pq oq preve que o programa pare de ler é o titulo ou o nome do autor é o '/0'
+                    }			//pq oq preve que o programa pare de ler Ã© o titulo ou o nome do autor Ã© o '/0'
                     titulo[i][j] = '\0';
 
                     // Copia o autor
                     j = 0;			//ajuda o programa a percorrer caracter por caracter partindo da memoria antiga para a memoria sendo escrita
-                    while (autor[i + 1][j] != '\0') { 	 //condição de parada '/0'
+                    while (autor[i + 1][j] != '\0') { 	 //condiÃ§Ã£o de parada '/0'
                         autor[i][j] = autor[i + 1][j];
                         j++;
                     }
                     autor[i][j] = '\0'; //para a leitura dos caracteres transferidos
                 }						//a transferencia do char ocorre de caracter por caracter
-                						//a tranferencia int move o valor(como é um numero inteiro sem letras) para a nova memorial vetorial
+                						//a tranferencia int move o valor(como Ã© um numero inteiro sem letras) para a nova memorial vetorial
                 total--;				//esta movendo para tras (titulo[1] para titulo[0])
 
                 printf("Livro excluido!\n");
