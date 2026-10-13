@@ -2,29 +2,37 @@
 #include <string.h>
 #include <stdlib.h>
 
+void limparBuffer() {
+    int c;
+    c = getchar();
+	while (c != '\n' && c != EOF) {
+    	c = getchar();
+	}
+}
+
 int main() {
 
     int codigo[20], ano[20];
     char titulo[20][50], autor[20][50];
-
+	int novoCodigo, novoAno;
     int total = 3; //nao pode ser 0 porque o programa ja inicia com 3 livros pre-cadastrados
     int opcao, i, codigoBusca, posicao;
     
     //LIVRO 1
     codigo[0] = 12345;
-    strcpy(titulo[0], "PequenoPrincipe");
+    strcpy(titulo[0], "Pequeno Principe");
     strcpy(autor[0], "Saint");
     ano[0] = 2000;
     
     //LIVRO 2
     codigo[1] = 12346;
-    strcpy(titulo[1], "EntendendoAlgoritmos");
+    strcpy(titulo[1], "Entendendo Algoritmos");
     strcpy(autor[1], "AdityaY.");
     ano[1] = 2018;
     
 	//LIVRO 3
 	codigo[2] = 12347	;
-    strcpy(titulo[2], "OMassacredaFamiliaHope");
+    strcpy(titulo[2], "O Massacre da Familia Hope");
     strcpy(autor[2], "RileySager");
     ano[2] = 2019;
     
@@ -37,7 +45,10 @@ int main() {
         printf("5 - Excluir\n");
         printf("0 - Sair\n");
         printf("Opcao: ");
-        scanf("%d", &opcao);
+		if (scanf("%d", &opcao) != 1) {   // não leu um número
+    		opcao = -1;                   // valor que cai no default
+		}
+		limparBuffer();                   // chama a funcao que sempre limpa o resto da linha
 
         switch (opcao) {
 
@@ -50,17 +61,25 @@ int main() {
                 }
 				
                 printf("Codigo: ");
-                scanf("%d", &codigo[total]);
+				scanf("%d", &novoCodigo);
+				limparBuffer();
 
                 printf("Titulo: ");
-                scanf("%s", titulo[total]);
-
+                scanf(" %49[^\n]", titulo[total]);  //le 49 caracteres e deixa 1 para o \0
+			    limparBuffer();                     //le qualquer coisa que a nao ser o ENTER(Mantem os espacos)
+			                                        
  		        printf("Autor: ");
-                scanf("%s", autor[total]);
-
+                scanf(" %49[^\n]", autor[total]);
+				limparBuffer();
+				
 		        printf("Ano: ");
-                scanf(" %d", &ano[total]);
-
+				if (scanf("%d", &ano[total]) != 1 || ano[total] < 0 || ano[total] > 2026) {
+    				limparBuffer();
+    				printf("Ano invalido! Livro nao cadastrado.\n");
+    				break;                              // sai antes do total++
+				}
+				limparBuffer();
+				
                 total++; //adiciona mais 1 livro para ser possivel lista-lo
 
                 printf("Livro cadastrado!\n");
@@ -73,6 +92,7 @@ int main() {
                 system("cls");
                 printf("Codigo do livro: ");  //codigo referencia para busca
                 scanf("%d", &codigoBusca);   //Para achar um livro no programa se basendo no seu codigo de cadastro
+                limparBuffer();
                 
                 for (i = 0; i < total; i++) {
 
@@ -112,20 +132,31 @@ int main() {
                 system("cls");
                 printf("Codigo do livro: "); //codigo referencia para busca
                 scanf("%d", &codigoBusca);
-
+				limparBuffer();                             //elimina sobras para nao atrapalhar o scan da proxima pergunta
+				
                 for (i = 0; i < total; i++) {  //Para achar um livro no programa se basendo no seu codigo de cadastro
 
                     if (codigo[i] == codigoBusca) {	//Quando ele acha o codigo do livro, ele solicita o novo valor que sera inserido
 													//Um 1 memoria vetorial so pode te 1 valor(quando acontece a substituicao o vetor naturalmente apaga oque existe e altera para o novo)
                         printf("Novo titulo: ");
-                        scanf("%s", titulo[i]);		//Lê o valor a ser alterado e armazena no [i] em questao
-													//por isso o i dever o mesmo para codigo[i] = titulo[i] = autor[i] = ano[i]
+                        scanf(" %49[^\n]", titulo[i]);		//Lê o valor a ser alterado e armazena no [i] em questao
+						limparBuffer(); 			//por isso o i dever o mesmo para codigo[i] = titulo[i] = autor[i] = ano[i]
+													
                         printf("Novo autor: ");
-                        scanf("%s", autor[i]);
-
+                        scanf(" %49[^\n]", autor[i]);
+						limparBuffer();
+						
                         printf("Novo ano: ");
-                        scanf(" %d", &ano[i]);
-
+						if (scanf("%d", &novoAno) != 1 || novoAno < 0 || novoAno > 2026) {
+   							limparBuffer();                  //elimina sobras para nao atrapalhar o scan da proxima pergunta
+    						printf("Ano invalido! Ano anterior mantido.\n");
+						} else {
+    						limparBuffer();
+    						ano[i] = novoAno;
+    						printf("Livro alterado!\n");
+						}
+						break;
+						
                         printf("Livro alterado!\n");
                         break;
                     }
@@ -142,7 +173,8 @@ int main() {
                 system("cls");
                 printf("Codigo do livro: ");	//Codigo referencia para busca
                 scanf("%d", &codigoBusca);
-
+				limparBuffer();
+				
                 for (i = 0; i < total; i++) {	//Percorre o vetor procurando o codigo escrito
                     if (codigo[i] == codigoBusca) {
                         posicao = i;			//Armazena a posicao i para as memorias vetoriais a serem excluidos
