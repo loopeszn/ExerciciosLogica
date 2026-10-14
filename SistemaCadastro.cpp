@@ -54,16 +54,29 @@ int main() {
 
             // CADASTRAR
             case 1:
-               system("cls");
+               system("clear");
                 if (total == 20) {  //se o vetor tiver 20 livros cadastrados
                     printf("Biblioteca cheia!\n");
                     break;
                 }
 				
                 printf("Codigo: ");
-				scanf("%d", &novoCodigo);
-				limparBuffer();
-
+				if (scanf("%d", &novoCodigo) != 1) {
+                    limparBuffer();
+                    printf("Entrada invalida!\n");
+                    break;
+                }
+                limparBuffer();
+                if (novoCodigo <= 0) {
+                    printf("Codigo invalido!\n");
+                    break;
+                }
+                if (novoCodigo < 10000 || novoCodigo > 99999) {
+                    printf("Codigo invalido! Digite exatamente 5 numeros.\n");
+                    break;
+                }
+				codigo[total] = novoCodigo;
+				
                 printf("Titulo: ");
                 scanf(" %49[^\n]", titulo[total]);  //le 49 caracteres e deixa 1 para o \0
 			    limparBuffer();                     //le qualquer coisa que a nao ser o ENTER(Mantem os espacos)
@@ -89,9 +102,13 @@ int main() {
 
             // CONSULTAR
             case 2:
-                system("cls");
+                system("clear");
                 printf("Codigo do livro: ");  //codigo referencia para busca
-                scanf("%d", &codigoBusca);   //Para achar um livro no programa se basendo no seu codigo de cadastro
+                if (scanf("%d", &codigoBusca) != 1) {      //Para achar um livro no programa se basendo no seu codigo de cadastro
+                    limparBuffer();
+                    printf("Entrada invalida!\n");
+                    break;
+                }
                 limparBuffer();
                 
                 for (i = 0; i < total; i++) {
@@ -113,7 +130,7 @@ int main() {
 
             // LISTAR
             case 3:
-                system("cls");
+                system("clear");
                 if (total == 0) {   //se o total de livros cadastrados for 0(se todos os livros forem excluidos)
                     printf("Nenhum livro cadastrado!\n");
                     break;
@@ -129,9 +146,13 @@ int main() {
 
             // ALTERAR
             case 4:
-                system("cls");
+                system("clear");
                 printf("Codigo do livro: "); //codigo referencia para busca
-                scanf("%d", &codigoBusca);
+                if (scanf("%d", &codigoBusca) != 1) {
+                    limparBuffer();
+                    printf("Entrada invalida!\n");
+                    break;
+                }
 				limparBuffer();                             //elimina sobras para nao atrapalhar o scan da proxima pergunta
 				
                 for (i = 0; i < total; i++) {  //Para achar um livro no programa se basendo no seu codigo de cadastro
@@ -153,9 +174,7 @@ int main() {
 						} else {
     						limparBuffer();
     						ano[i] = novoAno;
-    						printf("Livro alterado!\n");
 						}
-						break;
 						
                         printf("Livro alterado!\n");
                         break;
@@ -170,9 +189,13 @@ int main() {
 
             // EXCLUIR
             case 5:
-                system("cls");
+                system("clear");
                 printf("Codigo do livro: ");	//Codigo referencia para busca
-                scanf("%d", &codigoBusca);
+                if (scanf("%d", &codigoBusca) != 1) {
+                    limparBuffer();
+                    printf("Entrada invalida!\n");
+                    break;
+                }
 				limparBuffer();
 				
                 for (i = 0; i < total; i++) {	//Percorre o vetor procurando o codigo escrito
@@ -226,7 +249,7 @@ int main() {
 
 
             default:			//caso a opcao escolhida nao for encontrada
-                system("cls");
+                system("clear");
                 printf("Opcao invalida!\n");
         }
 
